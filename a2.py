@@ -1,3 +1,4 @@
+
 from pyspark.sql import SparkSession
 import argparse
 spark = SparkSession\
@@ -67,17 +68,11 @@ stage_2=split_df(df_flat)
 stage_2.show()
 from pyspark.sql.window import Window
 
-def balance_df(df):
-  # a positive + possible negative
-  a=df.filter('is_impossible=False').orderBy(rand()).dropDuplicates(['start','id']).orderBy('id')
-  # w1 = Window.partitionBy("context_id") 
-  # positive numbers in contract
-  # b=a.filter('start!=0').withColumn('n',count('is_impossible').over(w1))
-  w2 = Window.partitionBy("context_id").orderBy(rand())
-  b=df.filter('is_impossible=True').withColumn('row',row_number().over(w2)).filter('row<10').drop('row')
-  return a.union(b).orderBy('id').select('source','question','start','end')
-
-stage_3=balance_df(stage_2)
-stage_3.show()
+positive=stage_2.filter('start!=0')
+positive.show()
+p_negative=stage_2.filter(col('start')==0&col('is_impossible')==False)
+p_negative.show()
+i_negative=stage_2.filter('is_impossible=True').withColumn('row',row_number().over(w2)).filter('row<10').drop('row')
+stage_3=positive.union(p_negative).union(i_negative)
 stage_3.write.csv(output_path)
 spark.stop()
