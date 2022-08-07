@@ -1,9 +1,4 @@
-## heardware:
-master: m4.xlarge
-core: m4.xlarge
-## software:
-spark 3.1.2
-emr-6.5.0
+
 
 
 ### set up the emr environment 
