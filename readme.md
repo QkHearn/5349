@@ -1,6 +1,3 @@
-
-
-
 ### set up the emr environment 
 * follow the instruction of hardware and software
 * use thy key to set up ssh connection
