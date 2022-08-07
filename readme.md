@@ -25,4 +25,5 @@ chmod 700 submit_client.sh
 chmod 700 submit_cluster.sh
 ```
 run the code
-read me again 
+read me again
+I am version 1.2
