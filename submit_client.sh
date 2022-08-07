@@ -3,3 +3,4 @@ spark-submit \
     --deploy-mode client \
     a2.py \
     --output $1
+    --test

@@ -5,6 +5,10 @@ core: m4.xlarge
 spark 3.1.2
 emr-6.5.0
 
+
+hhi
+
+
 ### set up the emr environment 
 * follow the instruction of hardware and software
 * use thy key to set up ssh connection
