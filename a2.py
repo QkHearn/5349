@@ -1,4 +1,3 @@
-# change the code for mastering the knowledge of git
 from pyspark.sql import SparkSession
 import argparse
 spark = SparkSession\
